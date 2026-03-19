@@ -2,23 +2,22 @@ name: Daily Stock Monitor
 
 on:
   schedule:
-    # 平日（月-金）の日本時間 08:50 (UTC 23:50) に実行
     - cron: '50 23 * * 0-4'
-  workflow_dispatch: # 手動実行用ボタン
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # v3からv4に更新
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v5 # v4からv5に更新
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # バージョンを3.10に指定
+          python-version: '3.10'
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance pandas pandas-ta line-bot-sdk
+          pip install yfinance pandas line-bot-sdk
       - name: Run Monitor
         env:
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
