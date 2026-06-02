@@ -5,7 +5,7 @@ from linebot import LineBotApi
 from linebot.models import TextSendMessage
 
 # --- 設定エリア ---
-TICKERS = ["6769.T", "6629.T"]
+TICKERS = ["6769.T", "6629.T", "7794.T"]
 
 def calculate_rsi(series, period=13):
     delta = series.diff()
